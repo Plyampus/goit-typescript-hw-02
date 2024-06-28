@@ -7,6 +7,7 @@ export type ImageResult = {
   id: string;
   description: string | null;
   alt_description: string | null;
+  slug: string;
   urls: {
     raw: string;
     full: string;

@@ -7,7 +7,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ items, onImageClick }) => (
     <ul className={css["image-gallery"]}>
         {items.map(
             (
-                { id, urls, slug } // Ось тут використовується slug
+                { id, urls, slug }
             ) => (
                 <li key={id}>
                     <ImageCard

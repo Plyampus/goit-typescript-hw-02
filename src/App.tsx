@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
-import { fetchArticlesWithTopic } from './articles-api';
+import { fetchArticlesWithTopic, ImageResult } from './articles-api';
 import SearchForm from './components/SearchBar/SearchBar';
 import Loader from './components/Loader/Loader';
 import Error from './components/ErrorMessage/ErrorMessage';
@@ -10,7 +10,7 @@ import ImageGallery from './components/ImageGallery/ImageGallery';
 import { Toaster } from 'react-hot-toast';
 
 const App = () => {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<ImageResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [query, setQuery] = useState('');
@@ -40,7 +40,7 @@ const App = () => {
     }
   }, [query, page]);
 
-  const handleSearch = topic => {
+  const handleSearch = (topic: string) => {
     setArticles([]);
     setError(false);
     setQuery(topic);
@@ -51,7 +51,7 @@ const App = () => {
     setPage(prevPage => prevPage + 1);
   };
 
-  const openModal = imageUrl => {
+  const openModal = (imageUrl: string) => {
     setSelectedImageUrl(imageUrl);
     setModalIsOpen(true);
   };
