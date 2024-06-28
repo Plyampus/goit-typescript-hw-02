@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const baseURL = "https://api.unsplash.com/";
-const API_KEY = "nAkoceIY0l7aVwVNqN9mILLiO0CjiFKOkUjftZ-t7zs";
+const baseURL: string = "https://api.unsplash.com/";
+const API_KEY: string = "nAkoceIY0l7aVwVNqN9mILLiO0CjiFKOkUjftZ-t7zs";
 
 export type ImageResult = {
   id: string;
@@ -28,14 +28,19 @@ type Params = {
   page: number;
 };
 
-export const fetchArticlesWithTopic = async (topic, page) => {
+export const fetchArticlesWithTopic = async (
+  topic: string,
+  page: number
+): Promise<ImageResult[]> => {
   try {
-    const response = await axios.get(`${baseURL}/search/photos`, {
-      params: {
-        query: topic,
-        client_id: API_KEY,
-        page,
-      },
+    const params: Params = {
+      query: topic,
+      client_id: API_KEY,
+      page,
+    };
+
+    const response = await axios.get<ApiResponse>(`${baseURL}/search/photos`, {
+      params,
     });
 
     console.log(response.data);
